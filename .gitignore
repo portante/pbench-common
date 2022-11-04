@@ -1,16 +1,11 @@
-doc/*.html
 __pycache__
 *.swp
-unittests.log
-run-unittests.log
 build
 dist
 *~
 ????-*.patch
 /.env
 .DS_Store
-.npmrc
-.yarnrc
 *.egg-info/
 .tox
 .eggs

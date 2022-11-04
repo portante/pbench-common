@@ -1,9 +1,32 @@
+[tool.poetry]
+name = "pbench-common"
+version = "0.1.0"
+description = "Common pbench Python classes shared with Agent and Server"
+authors = ["Pbench Team <pbench-team@redhat.com>"]
+license = "LICENSE"
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+filelock = "<3.8"
+
+[tool.poetry.group.dev.dependencies]
+black = "22.3.0"
+flake8 = "4.0.1"
+isort = "5.10.1"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=6.2.5"
+coverage = {version = "<6.3", extras = ["toml"]}
+
 [build-system]
-requires = [
-    "setuptools >= 46.1.3.",
-    "wheel >= 0.34.2",
-]
-build-backend="setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+branch = true
+cover_pylib = false
+parallel = true
+relative_files = true
 
 [tool.isort]
 profile = "black"                 # black-compatible (e.g., trailing comma)
@@ -11,44 +34,6 @@ known_first_party = ["pbench"]    # separate "pbench" section
 multi_line_output = 3             # "hanging" indent with dedented paren
 force_sort_within_sections = true # don't separate import vs from
 order_by_type = false             # sort alphabetic regardless of case
-extend_skip = ["fio-histo-log-pctiles.py", "web-server/v0.3/demo.py"] # like black
 
 [tool.black]
 skip-string-normalization = false
-include = '''
-\.pyi?$
-| ^/agent/bench-scripts/postprocess/user-benchmark-wrapper$
-| ^/agent/bench-scripts/test-bin/mock-postprocess/uperf-postprocess$
-| ^/agent/bench-scripts/test-bin/java$
-| ^/agent/tool-scripts/datalog/haproxy-ocp-datalog$
-| ^/agent/tool-scripts/datalog/pprof-datalog$
-| ^/agent/tool-scripts/datalog/pprof-master-n-nodes$
-| ^/agent/tool-scripts/datalog/prometheus-metrics-datalog$
-| ^/agent/tool-scripts/datalog/oc-datalog$
-| ^/agent/tool-scripts/dcgm$
-| ^/agent/tool-scripts/node-exporter$
-| ^/agent/tool-scripts/pcp-transient$
-| ^/agent/tool-scripts/pcp$
-| ^/agent/tool-scripts/postprocess/prometheus-metrics-postprocess$
-| ^/agent/util-scripts/test-bin/hostname$
-| ^/agent/util-scripts/test-bin/mock-cmd$
-| ^/agent/util-scripts/get-internal-tool$
-| ^/agent/util-scripts/pbench-add-metalog-option$
-| ^/agent/util-scripts/pbench-display-sysinfo-options$
-| ^/agent/util-scripts/pbench-tool-meister-client$
-| ^/agent/util-scripts/pbench-tool-meister-stop$
-| ^/agent/util-scripts/pbench-verify-sysinfo-options$
-| ^/agent/util-scripts/tool-meister/pbench-tool-data-sink$
-| ^/agent/util-scripts/tool-meister/pbench-tool-meister$
-| ^/agent/util-scripts/validate-hostname$
-| ^/agent/util-scripts/validate-ipaddress$
-| ^/agent/util-scripts/pbench-tool-meister-start$
-| ^/server/bin/pbench-pp-status$
-| ^/utils/fetch-curr-commit-id$
-'''
-extend-exclude = '''
-(
-fio-histo-log-pctiles\.py$
-| web-server/v0\.3/demo\.py$
-)
-'''
