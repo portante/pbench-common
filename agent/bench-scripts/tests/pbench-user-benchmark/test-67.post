@@ -1,3 +1,0 @@
-#!/bin/bash
-
-cp -H ${_tdir}/test-bin/pbench-*-tools ${_testopt}/unittest-scripts/
